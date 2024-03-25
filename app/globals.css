@@ -2,32 +2,18 @@
 @tailwind components;
 @tailwind utilities;
 
-:root {
-  --foreground-rgb: 0, 0, 0;
-  --background-start-rgb: 214, 219, 220;
-  --background-end-rgb: 255, 255, 255;
+.form {
+    @apply flex flex-row justify-start items-center gap-x-4 w-full
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --foreground-rgb: 255, 255, 255;
-    --background-start-rgb: 0, 0, 0;
-    --background-end-rgb: 0, 0, 0;
-  }
+.form-label {
+    @apply text-lg uppercase font-semibold flex-1
 }
 
-body {
-  color: rgb(var(--foreground-rgb));
-  background: linear-gradient(
-      to bottom,
-      transparent,
-      rgb(var(--background-end-rgb))
-    )
-    rgb(var(--background-start-rgb));
+.form-entry {
+    @apply text-lg rounded-md p-1 flex-1
 }
 
-@layer utilities {
-  .text-balance {
-    text-wrap: balance;
-  }
+.hover-scale {
+    @apply hover:scale-105 transition
 }

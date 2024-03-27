@@ -1,9 +1,11 @@
-import React from 'react'
+import Box from "@/components/Box";
 
 const Verfication = () => {
   return (
-    <div>Please check your email and login again to access the web page.</div>
-  )
-}
+    <Box className="flex justify-center items-center">
+      <p className="dynamic-text">Please verify your email and then login.</p>
+    </Box>
+  );
+};
 
-export default Verfication
+export default Verfication;

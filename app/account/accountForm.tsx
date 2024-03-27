@@ -1,10 +1,12 @@
 "use client";
+
 import { useCallback, useEffect, useState } from "react";
 import { createClient } from "@/utils/supabase/client";
 import { type User } from "@supabase/supabase-js";
 import { useRouter } from "next/navigation";
 import toast from "react-hot-toast";
-import Button from "@/components/Button";
+
+import Box from "@/components/Box";
 
 export default function AccountForm({ user }: { user: User | null }) {
   const router = useRouter();
@@ -21,7 +23,7 @@ export default function AccountForm({ user }: { user: User | null }) {
 
       const { data, error, status } = await supabase
         .from("profiles")
-        .select(`full_name, username, website, avatar_url`)
+        .select("full_name, username, website, avatar_url")
         .eq("id", user?.id)
         .single();
 
@@ -79,58 +81,33 @@ export default function AccountForm({ user }: { user: User | null }) {
   }
 
   return (
-    <div className="max-w-[800px] mx-auto mt-24 
-    bg-neutral-200 p-6 rounded-md drop-shadow-md 
-    flex flex-col gap-y-4">
+    <Box className="bg-white rounded-md p-12 flex flex-col justify-center items-center md:drop-shadow-md">
       <div className="form">
         <label className="form-label" htmlFor="email">Email</label>
         <input className="form-entry" id="email" type="text" value={user?.email} disabled />
       </div>
       <div className="form">
         <label className="form-label" htmlFor="fullName">Full Name</label>
-        <input
-          className="form-entry"
-          id="fullName"
-          type="text"
-          value={fullname || ""}
-          onChange={(e) => setFullname(e.target.value)}
-        />
+        <input className="form-entry" id="fullName" type="text" value={fullname || ""} onChange={(e) => setFullname(e.target.value)} />
       </div>
       <div className="form">
         <label className="form-label" htmlFor="username">Username</label>
-        <input
-          className="form-entry"
-          id="username"
-          type="text"
-          value={username || ""}
-          onChange={(e) => setUsername(e.target.value)}
-        />
+        <input className="form-entry" id="username" type="text" value={username || ""} onChange={(e) => setUsername(e.target.value)} />
       </div>
       <div className="form">
         <label className="form-label" htmlFor="website">Website</label>
-        <input
-          className="form-entry"
-          id="website"
-          type="url"
-          value={website || ""}
-          onChange={(e) => setWebsite(e.target.value)}
-        />
+        <input className="form-entry" id="website" type="url" value={website || ""} onChange={(e) => setWebsite(e.target.value)} />
       </div>
-      <div className="form mt-4">
-        <Button
-          onClick={() =>
-            updateProfile({ fullname, username, website, avatar_url })
-          }
-          disabled={loading}
-        >
+      <div className="form-row mt-4">
+        <button className="button" onClick={() => updateProfile({ fullname, username, website, avatar_url })} disabled={loading}>
           {loading ? "Loading ..." : "Update"}
-        </Button>
+        </button>
         <form action="/auth/signout" method="post">
-          <Button type="submit">
+          <button className="button" type="submit">
             Sign out
-          </Button>
+          </button>
         </form>
       </div>
-    </div>
+    </Box>
   );
 }

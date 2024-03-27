@@ -2,18 +2,34 @@
 @tailwind components;
 @tailwind utilities;
 
+p, h3, h2, h1 {
+    @apply dynamic-text
+}
+
+.button {
+    @apply px-3 py-2 bg-slate-500 text-white rounded-md shadow-md
+}
+
 .form {
+    @apply flex flex-col justify-center items-start gap-y-2 w-full my-2
+}
+
+.form-row {
     @apply flex flex-row justify-start items-center gap-x-4 w-full
 }
 
 .form-label {
-    @apply text-lg uppercase font-semibold flex-1
+    @apply text-lg uppercase font-semibold flex-1 dynamic-text
 }
 
 .form-entry {
-    @apply text-lg rounded-md p-1 flex-1
+    @apply text-lg rounded-md p-1 flex-1 outline-none border-2 border-gray-500/10 dynamic-text
 }
 
 .hover-scale {
     @apply hover:scale-105 transition
+}
+
+.dynamic-text {
+    @apply text-lg max-md:text-base max-sm:text-sm
 }

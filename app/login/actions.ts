@@ -2,11 +2,13 @@
 
 import { revalidatePath } from 'next/cache'
 import { redirect } from 'next/navigation'
+import toast from 'react-hot-toast'
 
 import { createClient } from '@/utils/supabase/server'
 
 export async function login(formData: FormData) {
   const supabase = createClient()
+  console.log("Trying to log in")
 
   // type-casting here for convenience
   // in practice, you should validate your inputs
@@ -44,5 +46,6 @@ export async function signup(formData: FormData) {
   }
 
   revalidatePath('/', 'layout')
-  redirect('/verification')
+  toast.error("Please verify then login.")
+  redirect('./verification')
 }
